@@ -20,7 +20,6 @@ function sendEvent (connectionString, topic, value) {
     console.log('ready')
     try {
       producer.produce(topic, null, Buffer.from(value), null)
-      return 'Event sent'
     } catch (err) {
       console.error(err)
     }

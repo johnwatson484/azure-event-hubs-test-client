@@ -45,12 +45,12 @@ router.post('/', [
 
   const eventValue = formatEvent(req.body.value)
 
-  const response = sendEvent(
+  sendEvent(
     req.body.connectionString,
     req.body.topic,
     eventValue
   )
-  res.send(response)
+  res.send('Event sent')
 })
 
 app.use('/', router)
