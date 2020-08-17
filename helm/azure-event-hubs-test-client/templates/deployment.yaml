@@ -1,0 +1,8 @@
+{{- include "helm-library.deployment" (list . "azure-event-hubs-test-client.deployment") -}}
+{{- define "azure-event-hubs-test-client.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "helm-library.container" (list . "azure-event-hubs-test-client.container") }}
+{{- end -}}

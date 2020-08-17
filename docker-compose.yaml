@@ -1,0 +1,6 @@
+version: '3.7'
+services:
+  azure-event-hubs-test-client:
+    build: .
+    image: azure-event-hubs-test-client
+    container_name: azure-event-hubs-test-client

@@ -1,0 +1,17 @@
+version: '3.7'
+
+# This override file should be used in development environments to
+# bind-mount the app from the host into the container
+
+services:
+  azure-event-hubs-test-client:
+    build: 
+      context: .
+      target: development
+    ports:
+      - "3012:3012"
+      - "9229:9229"
+    volumes:
+      - ./app/:/home/node/app/
+      - ./package.json:/node/package.json
+

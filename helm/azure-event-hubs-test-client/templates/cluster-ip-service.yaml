@@ -1,0 +1,8 @@
+{{- include "helm-library.cluster-ip-service" (list . "azure-event-hubs-test-client.cluster-ip-service") -}}
+{{- define "azure-event-hubs-test-client.cluster-ip-service" -}}
+{{- if .Values.ingress.host }}
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.ingress.host }}
+{{- end }}
+{{- end -}}

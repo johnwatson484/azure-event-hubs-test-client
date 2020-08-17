@@ -1,0 +1,11 @@
+node_modules/
+test-output/
+.dockerignore
+test-output
+
+scripts
+docker-compose*
+LICENCE
+README.md
+Dockerfile
+npm-debug.log

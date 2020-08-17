@@ -1,0 +1,71 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="column">
+    <h1 class="title is-2">Azure Event Hubs Test Client</h1>
+
+    <form id="frm-message" action="/">
+
+      <div class="field">
+        <label class="label">Connection String</label>
+        <div class="control">
+          <input class="input" type="text" name="connectionString">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Event Hub</label>
+        <div class="control">
+          <input class="input" type="text" name="topic">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Value</label>
+        <div class="control">
+          <textarea class="textarea" name="value"></textarea>
+        </div>
+      </div>      
+
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" id="send">Send</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id="result" class="column" style="display: none">
+    <article class="message is-primary">
+      <div id="result-text" class="message-body">
+      </div>
+    </article>
+  </div>
+
+</div>
+
+<script>
+  $("#frm-message").submit(function (e) {
+    e.preventDefault()
+    $('#send').addClass('is-loading')
+    $('#result').fadeOut(0)
+
+    var form = $(this);
+    var url = form.attr('action')
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(),
+      success: function (data) {        
+        $('#result-text').html(data)
+        $('#send').removeClass('is-loading')
+        $('#result').fadeIn(2000)
+      }
+    })
+  })
+</script>
+
+{% endblock %}

@@ -1,0 +1,6 @@
+{{- include "helm-library.configmap" (list . "azure-event-hubs-test-client.configmap") -}}
+{{- define "azure-event-hubs-test-client.configmap" -}}
+data:
+  NODE_ENV: {{ quote .Values.environment }}
+  PORT: {{ quote .Values.container.port }}
+{{- end -}}
