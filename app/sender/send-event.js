@@ -6,6 +6,7 @@ function sendEvent (connectionString, topic, value) {
   const host = getHostFromConnectionString(connectionString)
 
   const producer = new Kafka.Producer({
+    debug: 'all',
     'metadata.broker.list': `${host}:9093`,
     dr_cb: true,
     'security.protocol': 'SASL_SSL',
@@ -17,9 +18,9 @@ function sendEvent (connectionString, topic, value) {
   producer.connect()
 
   producer.on('ready', function () {
-    console.log('ready')
     try {
       producer.produce(topic, null, Buffer.from(value), null)
+      console.log('event sent')
     } catch (err) {
       console.error(err)
     }
@@ -33,6 +34,7 @@ function sendEvent (connectionString, topic, value) {
   producer.on('delivery-report', function (err, report) {
     if (err) console.error(err)
     console.log(`delivery-report: ${JSON.stringify(report)}`)
+    producer.disconnect()
   })
 
   producer.setPollInterval(100)
