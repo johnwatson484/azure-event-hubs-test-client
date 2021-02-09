@@ -6,63 +6,125 @@
   <div class="column">
     <h1 class="title is-2">Azure Event Hubs Test Client</h1>
 
-    <form id="frm-message" action="/">
+    <form id="frm-message">
+      <div class="field">
+        <label class="label">Host</label>
+        <div class="control">
+          <input class="input" type="text" name="host" value="{{ body.host }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Port</label>
+        <div class="control">
+          <input class="input" type="number" name="port" value="{{ body.port }}">
+        </div>
+      </div>
+
+      <h3 class="title is-4">Authentication</h3>
 
       <div class="field">
         <label class="label">Connection String</label>
         <div class="control">
-          <input class="input" type="text" name="connectionString">
+          <input class="input" type="text" name="connectionString" value="{{ body.connectionString }}">
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Event Hub</label>
+        <label class="label">Username</label>
         <div class="control">
-          <input class="input" type="text" name="topic">
+          <input class="input" type="text" name="username" value="{{ body.username }}">
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Value</label>
+        <label class="label">Password</label>
         <div class="control">
-          <textarea class="textarea" name="value"></textarea>
+          <input class="input" type="password" name="password" value="{{ body.password }}">
         </div>
       </div>      
+
+      <div class="field">
+        <div class="control">
+          <label class="radio">
+            <input type="radio" name="authentication" value="connectionString" checked>
+            Connection string
+          </label>
+          <label class="radio">
+            <input type="radio" name="authentication" value="password">
+            Username and password
+          </label>
+        </div>
+         <label class="radio">
+            <input type="radio" name="authentication" value="none">
+            None
+          </label>
+        </div>
+      </div>
+
+      <h3 class="title is-4">Send events</h3>
+
+      <div class="field">
+        <label class="label">Event Hub name</label>
+        <div class="control">
+          <input class="input" type="text" name="topic" value="{{ body.topic }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Event type</label>
+        <div class="control">
+          <input class="input" type="text" name="type" value="{{ body.type }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Event body</label>
+        <div class="control">
+          <textarea class="textarea" name="event" value="{{ body.event }}"></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Total</label>
+        <div class="control">
+          <input class="input" style="width:200px;" type="number" name="totalSend" value="1">
+        </div>
+      </div>
 
       <div class="field">
         <div class="control">
           <button class="button is-link" id="send">Send</button>
         </div>
       </div>
+
+      <div id="result-send" class="column" style="display: none">
+        <article class="message is-primary">
+          <div id="result-text-send" class="message-body">
+          </div>
+        </article>
+      </div>       
     </form>
   </div>
-
-  <div id="result" class="column" style="display: none">
-    <article class="message is-primary">
-      <div id="result-text" class="message-body">
-      </div>
-    </article>
-  </div>
-
 </div>
 
 <script>
-  $("#frm-message").submit(function (e) {
+  $("#send").click(function (e) {
     e.preventDefault()
     $('#send').addClass('is-loading')
-    $('#result').fadeOut(0)
+    $('#result-send').fadeOut(0)
 
-    var form = $(this);
-    var url = form.attr('action')
+    const form = $('#frm-message');
+    const url = '/send'
 
     $.ajax({
       type: "POST",
       url: url,
       data: form.serialize(),
-      success: function (data) {        
-        $('#result-text').html(data)
+      success: function (data) {     
+        $('#result-text-send').html(data)
         $('#send').removeClass('is-loading')
-        $('#result').fadeIn(2000)
+        $('#result-send').fadeIn(2000)
       }
     })
   })

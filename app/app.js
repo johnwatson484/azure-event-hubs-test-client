@@ -4,8 +4,13 @@ const router = express.Router()
 const nunjucks = require('nunjucks')
 const bodyParser = require('body-parser')
 const favicon = require('serve-favicon')
-const { check, validationResult } = require('express-validator')
-const { sendEvent, formatEvent } = require('./sender')
+const cookieSession = require('cookie-session')
+const { validationResult } = require('express-validator')
+const { EventSender } = require('./events')
+const formatEvent = require('./format-event')
+const mapTotal = require('./map-total')
+const { validateSend } = require('./validation')
+const config = require('./config')
 
 nunjucks.configure('./app/views', {
   autoescape: true,
@@ -14,43 +19,52 @@ nunjucks.configure('./app/views', {
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieSession(config.cookie))
 
 app.use(favicon('./app/favicon.ico'))
 
 router.get('/', function (req, res) {
-  res.render('index.njk')
+  const { session: { body } } = req
+  res.render('index.njk', { body })
 })
 
-router.post('/', [
-  check('connectionString')
-    .contains('Endpoint=sb://')
-    .withMessage('Connection string Endpoint missing')
-    .contains(';SharedAccessKeyName=')
-    .withMessage('Connection string SharedAccessKeyName missing')
-    .contains(';SharedAccessKey=')
-    .withMessage('Connection string SharedAccessKey missing')
-    .trim(),
-  check('topic').isLength({ min: 1 })
-    .withMessage('Invalid queue')
-    .trim(),
-  check('value')
-    .isJSON()
-    .withMessage('Invalid JSON message')
-    .trim()
-], function (req, res) {
+router.post('/send', validateSend, async function (req, res) {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.send(errors.array().map(x => `<p>${x.msg}</p>`))
   }
 
-  const eventValue = formatEvent(req.body.value)
+  req.session.body = req.body
 
-  sendEvent(
-    req.body.connectionString,
-    req.body.topic,
-    eventValue
-  )
-  res.send('Event sent')
+  let response
+
+  try {
+    const eventConfig = {
+      host: req.body.host,
+      port: req.body.port,
+      connectionString: req.body.connectionString,
+      username: req.body.username,
+      password: req.body.password,
+      authentication: req.body.password,
+      topic: req.body.topic
+    }
+    const total = mapTotal(req.body.totalSend)
+    const sender = new EventSender(eventConfig)
+    await sender.connect()
+    const events = []
+    for (let i = 0; i < total; i++) {
+      const event = formatEvent(req.body.event, i + 1)
+      events.push(event)
+    }
+    await sender.sendEvents(events, req.body.type)
+    await sender.closeConnection()
+    response = `Sent ${total} events`
+    console.log(response)
+  } catch (err) {
+    response = `Unable to send event: ${err}`
+    console.error(response)
+  }
+  res.send(response)
 })
 
 app.use('/', router)
