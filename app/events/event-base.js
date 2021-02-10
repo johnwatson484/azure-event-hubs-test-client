@@ -5,7 +5,6 @@ class EventBase {
     this.config = config
     this.topic = config.topic
     this.port = this.getPort(config.port)
-    this.connect()
   }
 
   async connect () {
@@ -15,15 +14,15 @@ class EventBase {
       brokers: [`${this.config.host}:${this.port}`],
       clientId: 'azure-event-hubs-test-client',
       retry: {
-        initialRetryTime: 500,
-        retries: 5
+        initialRetryTime: 100,
+        retries: 0
       },
       ...credentials
     })
   }
 
   getPort (port) {
-    return this.config.authentication === 'connectionString' ? 9093 : port || 9093
+    return this.config.authentication === 'connectionString' ? 9093 : port
   }
 
   getCredentials () {
@@ -47,7 +46,7 @@ class EventBase {
     }
   }
 
-  getTokenCredgetConnectionStringCredentialsentials () {
+  getConnectionStringCredentials () {
     return {
       ssl: true,
       sasl: {

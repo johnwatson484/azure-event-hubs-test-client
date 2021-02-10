@@ -5,11 +5,11 @@ class EventReceiver extends EventBase {
     super(config)
     this.receiverHandler = this.receiverHandler.bind(this)
     this.action = action
-    this.consumer = this.kafka.consumer({ groupId: 'azure-event-hubs-test-client' })
   }
 
   async connect () {
     await super.connect()
+    this.consumer = this.kafka.consumer({ groupId: 'azure-event-hubs-test-client' })
     await this.consumer.connect()
   }
 

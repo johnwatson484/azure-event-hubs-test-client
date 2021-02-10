@@ -45,7 +45,7 @@ router.post('/send', validateSend, async function (req, res) {
       connectionString: req.body.connectionString,
       username: req.body.username,
       password: req.body.password,
-      authentication: req.body.password,
+      authentication: req.body.authentication,
       topic: req.body.topic
     }
     const total = mapTotal(req.body.totalSend)

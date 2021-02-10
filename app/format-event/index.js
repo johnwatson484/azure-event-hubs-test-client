@@ -1,5 +1,6 @@
 const formatEvent = (event, id) => {
   event = replacePlaceholders(event, id)
+  return JSON.parse(event)
 }
 
 const replacePlaceholders = (event, id) => {

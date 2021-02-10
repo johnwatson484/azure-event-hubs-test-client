@@ -5,11 +5,11 @@ class EventSender extends EventBase {
   constructor (config) {
     super(config)
     this.sendEvents = this.sendEvents.bind(this)
-    this.producer = this.kafka.producer()
   }
 
   async connect () {
     await super.connect()
+    this.producer = this.kafka.producer()
     await this.producer.connect()
   }
 
@@ -22,7 +22,7 @@ class EventSender extends EventBase {
   async send (events) {
     await this.producer.send({
       topic: this.topic,
-      compression: CompressionTypes.GZIP,
+      compression: CompressionTypes.None,
       messages: events
     })
   }
@@ -37,10 +37,10 @@ class EventSender extends EventBase {
     return event
   }
 
-  formatEvent (body, type) {
+  formatEvent (event, type) {
     return {
       type,
-      body
+      body: event
     }
   }
 
