@@ -15,7 +15,7 @@ class EventBase {
       clientId: 'azure-event-hubs-test-client',
       retry: {
         initialRetryTime: 100,
-        retries: 0
+        retries: 5
       },
       ...credentials
     })
