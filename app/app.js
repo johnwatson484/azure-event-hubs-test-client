@@ -53,7 +53,7 @@ router.post('/send', validateSend, async function (req, res) {
     await sender.connect()
     const events = []
     for (let i = 0; i < total; i++) {
-      const event = formatEvent(req.body.event, i + 1)
+      const event = formatEvent(req.body.event, req.body.routingKey, i + 1)
       events.push(event)
     }
     await sender.sendEvents(events, req.body.type)

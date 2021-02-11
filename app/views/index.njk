@@ -78,6 +78,13 @@
       </div>
 
       <div class="field">
+        <label class="label">Routing key</label>
+        <div class="control">
+          <input class="input" type="text" name="routingKey" value="{{ body.routingKey }}">
+        </div>
+      </div>
+
+      <div class="field">
         <label class="label">Event body</label>
         <div class="control">
           <textarea class="textarea" name="event">{{ body.event }}</textarea>
@@ -102,7 +109,7 @@
           <div id="result-text-send" class="message-body">
           </div>
         </article>
-      </div>       
+      </div>
     </form>
   </div>
 </div>

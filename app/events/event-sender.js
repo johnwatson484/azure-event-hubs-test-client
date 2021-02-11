@@ -32,8 +32,9 @@ class EventSender extends EventBase {
   }
 
   async transformEvent (event, type) {
+    const headers = event.headers
     event = this.formatEvent(event, type)
-    event = this.serializeEvent(event)
+    event = this.serializeEvent(event, headers)
     return event
   }
 
@@ -44,8 +45,9 @@ class EventSender extends EventBase {
     }
   }
 
-  serializeEvent (event) {
+  serializeEvent (event, headers = {}) {
     return {
+      headers,
       value: JSON.stringify(event)
     }
   }
