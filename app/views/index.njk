@@ -7,17 +7,23 @@
     <h1 class="title is-2">Azure Event Hubs Test Client</h1>
 
     <form id="frm-message">
-      <div class="field">
-        <label class="label">Host</label>
-        <div class="control">
-          <input class="input" type="text" name="host" value="{{ body.host }}">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Host</label>
+            <div class="control">
+              <input class="input" type="text" name="host" value="{{ body.host }}">
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label">Port</label>
-        <div class="control">
-          <input class="input" type="number" name="port" value="{{ body.port }}">
+        <div class="column">
+          <div class="field">
+            <label class="label">Port</label>
+            <div class="control">
+              <input class="input" type="number" name="port" value="{{ body.port }}">
+            </div>
+          </div>
         </div>
       </div>
 
@@ -30,17 +36,23 @@
         </div>
       </div>
 
-      <div class="field">
-        <label class="label">Username</label>
-        <div class="control">
-          <input class="input" type="text" name="username" value="{{ body.username }}">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input class="input" type="text" name="username" value="{{ body.username }}">
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label">Password</label>
-        <div class="control">
-          <input class="input" type="password" name="password" value="{{ body.password }}">
+        <div class="column">
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" name="password" value="{{ body.password }}">
+            </div>
+          </div>
         </div>
       </div>
 
@@ -63,44 +75,57 @@
 
       <h3 class="title is-4">Send events</h3>
 
-      <div class="field">
-        <label class="label">Event Hub name</label>
-        <div class="control">
-          <input class="input" type="text" name="topic" value="{{ body.topic }}">
-        </div>
-      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Event Hub name</label>
+            <div class="control">
+              <input class="input" type="text" name="topic" value="{{ body.topic }}">
+            </div>
+          </div>
 
-      <div class="field">
-        <label class="label">Event type</label>
-        <div class="control">
-          <input class="input" type="text" name="type" value="{{ body.type }}">
-        </div>
-      </div>
+          <div class="field">
+            <label class="label">Event type</label>
+            <div class="control">
+              <input class="input" type="text" name="type" value="{{ body.type }}">
+            </div>
+          </div>
 
-      <div class="field">
-        <label class="label">Routing key</label>
-        <div class="control">
-          <input class="input" type="text" name="routingKey" value="{{ body.routingKey }}">
+          <div class="field">
+            <label class="label">Routing key</label>
+            <div class="control">
+              <input class="input" type="text" name="routingKey" value="{{ body.routingKey }}">
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label">Event body</label>
-        <div class="control">
-          <textarea class="textarea" name="event">{{ body.event }}</textarea>
-        </div>
-      </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Event body</label>
+            <div class="control">
+              <textarea class="textarea" name="event">{{ body.event }}</textarea>
+            </div>
+          </div>
 
-      <div class="field">
-        <label class="label">Total</label>
-        <div class="control">
-          <input class="input" style="width:200px;" type="number" name="totalSend" value="1">
-        </div>
-      </div>
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">Total</label>
+                <div class="control">
+                  <input class="input" style="width:200px;" type="number" name="totalSend" value="1">
+                </div>
+              </div>
+            </div>
 
-      <div class="field">
-        <div class="control">
-          <button class="button is-link" id="send">Send</button>
+            <div class="column">
+              <div class="field">
+                <label class="label" hidden>Send</label>
+                <div class="control">
+                  <button class="button is-link" id="send">Send events</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
