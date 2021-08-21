@@ -17,6 +17,7 @@ nunjucks.configure('./app/views', {
   express: app
 })
 
+app.disable('x-powered-by')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieSession(config.cookie))

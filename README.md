@@ -1,5 +1,7 @@
 [![Build Status](https://dev.azure.com/johnwatson484/John%20D%20Watson/_apis/build/status/Azure%20Event%20Hubs%20Test%20Client?branchName=master)](https://dev.azure.com/johnwatson484/John%20D%20Watson/_build/latest?definitionId=43&branchName=master)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=johnwatson484_azure-event-hubs-test-client&metric=alert_status)](https://sonarcloud.io/dashboard?id=johnwatson484_azure-event-hubs-test-client)
+
 # Azure Event Hubs Test Client
 A test client for sending JSON format events to Azure Event Hubs or Kafka broker.
 
