@@ -1,5 +1,5 @@
 # Development
-FROM node:14.15.3-alpine AS development
+FROM node:14.17.5-alpine AS development
 
 WORKDIR /home/node
 
