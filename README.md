@@ -1,18 +1,19 @@
 [![Build Status](https://dev.azure.com/johnwatson484/John%20D%20Watson/_apis/build/status/Azure%20Event%20Hubs%20Test%20Client?branchName=master)](https://dev.azure.com/johnwatson484/John%20D%20Watson/_build/latest?definitionId=43&branchName=master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=johnwatson484_azure-event-hubs-test-client&metric=alert_status)](https://sonarcloud.io/dashboard?id=johnwatson484_azure-event-hubs-test-client)
 [![Known Vulnerabilities](https://snyk.io/test/github/johnwatson484/azure-event-hubs-test-client/badge.svg)](https://snyk.io/test/github/johnwatson484/azure-event-hubs-test-client)
+
 # Azure Event Hubs Test Client
 A test client for sending JSON format events to Azure Event Hubs or Kafka broker.
 
-# Prerequisites
+## Prerequisites
 Node v14+  
 
 Or:  
 
 Docker
 
-# Running the client
-## From source
+## Running the client
+### From source
 - Clone the repo and run `npm install` to install required npm packages
 - Update the preferred port in the `config.js` file.  By default this is set to **3012**.
 
@@ -24,8 +25,11 @@ Docker
 - Run `docker-compose up`
 
 
-## Docker
+### Docker
 `docker run -p 3012:3012 johnwatson484/azure-event-hubs-test-client`
+
+### Hosted
+A hosted version is available at https://aehtc.lynxmagnus.com/
 
 ## Using the client
 The below screenshot shows an overview of the the client.
@@ -70,4 +74,4 @@ Any `##` placeholders will be replaced by an auto incrementing integer.
 ### Set the total
 The number of copies of the event to send.
 ## Errors
-If invalid crendentials or malformed JSON is provided an error will be returned through the client.
+If invalid credentials or malformed JSON is provided an error will be returned through the client.
