@@ -9,8 +9,12 @@ resources:
     type: github
     endpoint: John D Watson
     name: johnwatson484/azure-devops-templates
-
+    ref: refs/tags/1
+    
 extends:
   template: build.yaml@templates
   parameters:
-    repo: azure-event-hubs-test-client
+    name: azure-event-hubs-test-client
+    deploy: true
+    namespace: azure-event-hubs
+    hasSecureHelmValuesFile: true

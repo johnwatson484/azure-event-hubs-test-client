@@ -1,30 +1,15 @@
-environment: development
+environment: production
 name: azure-event-hubs-test-client
 image: azure-event-hubs-test-client
 
-service:
-  port: 80
-
 container:
-  imagePullPolicy: IfNotPresent
+  cookieSecret: notreallyasecretnotreallyasecret
   requestMemory: 60Mi
   requestCpu: 60m
   limitMemory: 120Mi
   limitCpu: 120m
-  readOnlyRootFilesystem: false
-  allowPrivilegeEscalation: false
   port: 3012
 
-ingress:
-  class: nginx
-  host:
-  certIssuer: letsencrypt
+ingress: {}
 
-deployment:
-  restartPolicy: Always
-  replicas: 1
-  minReadySeconds: 5
-  redeployOnChange: update this field to force a change
-  imagePullSecret:
-  runAsNonRoot: true
-  runAsUser: 1000
+deployment: {}

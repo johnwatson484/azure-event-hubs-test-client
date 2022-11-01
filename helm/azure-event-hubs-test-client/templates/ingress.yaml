@@ -1,8 +1,3 @@
 {{- include "helm-library.ingress" (list . "azure-event-hubs-test-client.ingress") -}}
 {{- define "azure-event-hubs-test-client.ingress" -}}
-metadata:
-  annotations:
-  {{- if .Values.ingress.host }}
-    cert-manager.io/cluster-issuer: {{ .Values.ingress.certIssuer }}
-  {{- end }}
 {{- end -}}

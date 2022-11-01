@@ -6,7 +6,7 @@
 A test client for sending JSON format events to Azure Event Hubs or Kafka broker.
 
 ## Prerequisites
-Node v14+  
+Node v18+  
 
 Or:  
 
