@@ -15,7 +15,7 @@ ENV PORT ${PORT}
 EXPOSE ${PORT}
 COPY --chown=node:node package*.json ./
 RUN npm install
-COPY --chown=node:node . .
+COPY --chown=node:node ./app ./app
 CMD [ "npm", "run", "start:watch" ]
 
 # Production
