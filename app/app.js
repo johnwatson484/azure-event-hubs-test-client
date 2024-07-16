@@ -14,7 +14,7 @@ const config = require('./config')
 
 nunjucks.configure('./app/views', {
   autoescape: true,
-  express: app
+  express: app,
 })
 
 app.disable('x-powered-by')
@@ -47,7 +47,7 @@ router.post('/send', validateSend, async function (req, res) {
       username: req.body.username,
       password: req.body.password,
       authentication: req.body.authentication,
-      topic: req.body.topic
+      topic: req.body.topic,
     }
     const total = mapTotal(req.body.totalSend)
     const sender = new EventSender(eventConfig)

@@ -16,7 +16,7 @@ class EventReceiver extends EventBase {
   async subscribe () {
     await this.consumer.subscribe({
       topic: this.config.topic,
-      fromBeginning: true
+      fromBeginning: true,
     })
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
@@ -25,7 +25,7 @@ class EventReceiver extends EventBase {
         } catch (err) {
           this.receiverError(err)
         }
-      }
+      },
     })
   }
 

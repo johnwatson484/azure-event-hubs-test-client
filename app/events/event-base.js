@@ -15,9 +15,9 @@ class EventBase {
       clientId: 'azure-event-hubs-test-client',
       retry: {
         initialRetryTime: 100,
-        retries: 5
+        retries: 5,
       },
-      ...credentials
+      ...credentials,
     })
   }
 
@@ -41,8 +41,8 @@ class EventBase {
       sasl: {
         mechanism: this.config.mechanism || 'plain',
         username: this.config.username,
-        password: this.config.password
-      }
+        password: this.config.password,
+      },
     }
   }
 
@@ -52,8 +52,8 @@ class EventBase {
       sasl: {
         mechanism: 'plain',
         username: '$ConnectionString',
-        password: this.config.connectionString
-      }
+        password: this.config.connectionString,
+      },
     }
   }
 }

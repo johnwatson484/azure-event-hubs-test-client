@@ -3,5 +3,5 @@ const EventSender = require('./event-sender')
 
 module.exports = {
   EventReceiver,
-  EventSender
+  EventSender,
 }

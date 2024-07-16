@@ -23,7 +23,7 @@ class EventSender extends EventBase {
     await this.producer.send({
       topic: this.topic,
       compression: CompressionTypes.None,
-      messages: events
+      messages: events,
     })
   }
 
@@ -41,14 +41,14 @@ class EventSender extends EventBase {
   formatEvent (event, type) {
     return {
       type,
-      body: event
+      body: event,
     }
   }
 
   serializeEvent (event, headers = {}) {
     return {
       headers,
-      value: JSON.stringify(event)
+      value: JSON.stringify(event),
     }
   }
 }
