@@ -17,4 +17,3 @@ extends:
     name: azure-event-hubs-test-client
     deploy: true
     namespace: azure-event-hubs
-    hasSecureHelmValuesFile: true

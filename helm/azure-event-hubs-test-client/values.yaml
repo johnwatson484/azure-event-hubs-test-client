@@ -3,13 +3,16 @@ name: azure-event-hubs-test-client
 image: azure-event-hubs-test-client
 
 container:
-  cookieSecret: notreallyasecretnotreallyasecret
   requestMemory: 60Mi
   requestCpu: 60m
   limitMemory: 120Mi
   limitCpu: 120m
   port: 3012
 
-ingress: {}
+ingress:
+  host: aehtc.lynxmagnus.com
 
 deployment: {}
+
+secret:
+  secretsPath: /azure-event-hubs-test-client
