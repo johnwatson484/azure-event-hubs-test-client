@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   azure-event-hubs-test-client:
     build: .
