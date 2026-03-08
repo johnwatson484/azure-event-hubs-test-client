@@ -1,8 +1,9 @@
 environment: production
 name: azure-event-hubs-test-client
-image: azure-event-hubs-test-client
+
 
 container:
+  image: azure-event-hubs-test-client
   requestMemory: 60Mi
   requestCpu: 60m
   limitMemory: 120Mi
