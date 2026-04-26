@@ -15,5 +15,5 @@ extends:
   template: build.yaml@templates
   parameters:
     name: azure-event-hubs-test-client
-    deploy: true
+    deploy: false
     namespace: azure-event-hubs
