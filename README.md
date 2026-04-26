@@ -28,9 +28,6 @@ Docker
 ### Docker
 `docker run -p 3012:3012 johnwatson484/azure-event-hubs-test-client`
 
-### Hosted
-A hosted version is available at https://aehtc.lynxmagnus.com/
-
 ## Using the client
 The below screenshot shows an overview of the the client.
 
